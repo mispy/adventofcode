@@ -1,0 +1,1 @@
+My solutions to the [Advent of Code](https://adventofcode.com/) puzzles. Since I'm treating them as a speed coding contest, the quality and performance of this code is very poor! It's all about getting _a_ solution as quickly as possible.
