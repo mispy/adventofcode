@@ -1,0 +1,5 @@
+{
+    "ignore": [".git", "node_modules"],
+    "watch": ["2018"],
+    "ext": "ts"
+}

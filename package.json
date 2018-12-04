@@ -1,6 +1,13 @@
 {
   "dependencies": {
+    "@types/fast-levenshtein": "^0.0.1",
+    "@types/lodash": "^4.14.118",
+    "@types/moment": "^2.13.0",
+    "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.11",
-    "nodemon": "^1.18.7"
+    "moment": "^2.22.2",
+    "nodemon": "^1.18.7",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1"
   }
 }

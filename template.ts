@@ -1,4 +1,4 @@
-const _ = require('lodash')
+import * as _ from 'lodash'
 
 let input = ""
 let lines = ["test"]
