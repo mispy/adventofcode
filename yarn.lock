@@ -19,6 +19,23 @@
   dependencies:
     moment "*"
 
+"@types/node@^10.12.12":
+  version "10.12.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.12.tgz#e15a9d034d9210f00320ef718a50c4a799417c47"
+  integrity sha512-Pr+6JRiKkfsFvmU/LK68oBRCQeEg36TyAbPhc2xpez24OOZZCuoIhWGTd39VZy6nGafSbxzGouFPTFD/rR1A0A==
+
+"@types/underscore.string@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@types/underscore.string/-/underscore.string-0.0.33.tgz#1cf9f12e5dc56b1ff7ffa04ffb9c8c0188548647"
+  integrity sha512-Lx2mWs8099HAaCzfxSse1MOSXor4jS1HgIwzhnuOehcPOQiIQb9UGy2B/NjinolZX46yUUfF4VYvLU3YuM0Inw==
+  dependencies:
+    "@types/underscore" "*"
+
+"@types/underscore@*":
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.8.9.tgz#fef41f800cd23db1b4f262ddefe49cd952d82323"
+  integrity sha512-vfzZGgZKRFy7KEWcBGfIFk+h6B+thDCLfkD1exMBMRlUsx2icA+J6y4kAbZs/TjSTeY1duw89QUU133TSzr60Q==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

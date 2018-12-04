@@ -1,0 +1,114 @@
+import _ = require('lodash');
+declare const log: (message?: any, ...optionalParams: any[]) => void;
+export { _, log };
+export declare function levenshtein(s1: string, s2: string): number;
+export declare function hamming(s1: string | any[], s2: string | any[]): number;
+export declare function runSamples(solver: (lines: string[]) => void, samples: string[]): void;
+export declare function scan(s: string, r: RegExp): string[];
+export declare function ints(s: string): number[];
+export declare function floats(s: string): number[];
+export declare class Vector2 {
+    static left: Vector2;
+    static right: Vector2;
+    static up: Vector2;
+    static down: Vector2;
+    static zero: Vector2;
+    static readonly epsilon: number;
+    static distanceSq(a: Vector2, b: Vector2): number;
+    static distance(a: Vector2, b: Vector2): number;
+    static angle(a: Vector2, b: Vector2): number;
+    static dot(lhs: Vector2, rhs: Vector2): number;
+    static distanceFromPointToLineSq(p: Vector2, v: Vector2, w: Vector2): number;
+    static distanceFromPointToLine(p: Vector2, v: Vector2, w: Vector2): number;
+    static fromArray(a: [number, number]): Vector2;
+    static fromObject(o: {
+        x: number;
+        y: number;
+    }): Vector2;
+    x: number;
+    y: number;
+    constructor(x: number, y: number);
+    subtract(v: Vector2): Vector2;
+    add(v: Vector2): Vector2;
+    times(n: number): Vector2;
+    clone(): Vector2;
+    readonly magnitude: number;
+    normalize(): Vector2;
+    normals(): Vector2[];
+    invert(): Vector2;
+    toString(): string;
+}
+export declare class Bounds {
+    static fromProps(props: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }): Bounds;
+    static fromBBox(bbox: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }): Bounds;
+    static fromCorners(p1: Vector2, p2: Vector2): Bounds;
+    static merge(boundsList: Bounds[]): Bounds;
+    static empty(): Bounds;
+    readonly x: number;
+    readonly y: number;
+    readonly width: number;
+    readonly height: number;
+    constructor(x: number, y: number, width: number, height: number);
+    readonly left: number;
+    readonly top: number;
+    readonly right: number;
+    readonly bottom: number;
+    readonly centerX: number;
+    readonly centerY: number;
+    readonly centerPos: Vector2;
+    readonly area: number;
+    readonly topLeft: Vector2;
+    readonly topRight: Vector2;
+    readonly bottomLeft: Vector2;
+    readonly bottomRight: Vector2;
+    padLeft(amount: number): Bounds;
+    padRight(amount: number): Bounds;
+    padBottom(amount: number): Bounds;
+    padTop(amount: number): Bounds;
+    padWidth(amount: number): Bounds;
+    padHeight(amount: number): Bounds;
+    fromLeft(amount: number): Bounds;
+    fromBottom(amount: number): Bounds;
+    pad(amount: number): Bounds;
+    extend(props: {
+        x?: number;
+        y?: number;
+        width?: number;
+        height?: number;
+    }): Bounds;
+    scale(scale: number): Bounds;
+    intersects(otherBounds: Bounds): boolean;
+    lines(): Vector2[][];
+    boundedPoint(p: Vector2): Vector2;
+    containsPoint(x: number, y: number): boolean;
+    contains(p: Vector2): boolean;
+    encloses(bounds: Bounds): boolean;
+    toCSS(): {
+        left: string;
+        top: string;
+        width: string;
+        height: string;
+    };
+    toProps(): {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
+    toArray(): [[number, number], [number, number]];
+    xRange(): [number, number];
+    yRange(): [number, number];
+    equals(bounds: Bounds): boolean;
+    distanceToPointSq(p: Vector2): number;
+    distanceToPoint(p: Vector2): number;
+}

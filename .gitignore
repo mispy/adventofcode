@@ -1,1 +1,4 @@
 node_modules
+aocutil/util.js
+dist/**/*.js
+dist/**/*.js.map
