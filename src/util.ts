@@ -36,8 +36,20 @@ export function ints(s: string): number[] {
     return scan(s, /-?\d+/g).map(v => parseInt(v))
 }
 
+export function positiveInts(s: string): number[] {
+    return scan(s, /\d+/g).map(v => parseInt(v))
+}
+
 export function floats(s: string): number[] {
+    return scan(s, /-?\d+(?:\.\d+)?/g).map(v => parseFloat(v))
+}
+
+export function positiveFloats(s: string): number[] {
     return scan(s, /\d+(?:\.\d+)?/g).map(v => parseFloat(v))
+}
+
+export function words(s: string): string[] {
+    return scan(s, /[a-zA-Z]+/g)
 }
 
 export class Vector2 {
