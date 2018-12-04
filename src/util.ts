@@ -2,6 +2,9 @@ import _ = require('lodash')
 const log = console.log
 export { _, log }
 
+import moment = require('moment')
+export { moment }
+
 import fastLevenshtein = require('fast-levenshtein')
 export function levenshtein(s1: string, s2: string) {
     return fastLevenshtein.get(s1, s2)
