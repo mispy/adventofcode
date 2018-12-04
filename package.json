@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.7"
+  }
+}
