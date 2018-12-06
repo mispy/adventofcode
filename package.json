@@ -1,11 +1,13 @@
 {
   "private": true,
   "dependencies": {
+    "@types/collections": "^5.0.0",
     "@types/fast-levenshtein": "^0.0.1",
     "@types/lodash": "^4.14.118",
     "@types/moment": "^2.13.0",
     "@types/node": "^10.12.12",
     "@types/underscore.string": "^0.0.33",
+    "collections": "^5.1.5",
     "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
