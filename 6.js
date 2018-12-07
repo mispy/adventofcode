@@ -13,7 +13,7 @@ function main(lines) {
     let minY = _.min(coords.map(c => c.vec.y))
     let maxY = _.max(coords.map(c => c.vec.y))
 
-    /*for (let i = minX-5; i < maxX+5; i++) {
+    for (let i = minX-5; i < maxX+5; i++) {
         for (let j = minY-5; j < maxY+5; j++) {
             const p = new Vector2(i, j)
             const dists = coords.map(c => ({ coord: c, dist: manhattanDist(p, c.vec) }))
@@ -28,9 +28,9 @@ function main(lines) {
     }
 
     let sorted = _.sortBy(coords.filter(c => !c.infinite), c => -c.total)
-    log(sorted[0].total)*/
+    log(sorted)
 
-    let area = 0
+    /*let area = 0
     for (let i = minX-5; i < maxX+5; i++) {
         for (let j = minY-5; j < maxY+5; j++) {
             const p = new Vector2(i, j)
@@ -45,7 +45,7 @@ function main(lines) {
         }
     }
 
-    log(area)
+    log(area)*/
 
 }
 
