@@ -1,12 +1,16 @@
 {
   "private": true,
   "dependencies": {
+    "@datastructures-js/binary-search-tree": "^1.0.9",
+    "@datastructures-js/doubly-linked-list": "^1.0.1",
     "@types/collections": "^5.0.0",
     "@types/fast-levenshtein": "^0.0.1",
     "@types/lodash": "^4.14.118",
     "@types/moment": "^2.13.0",
     "@types/node": "^10.12.12",
     "@types/underscore.string": "^0.0.33",
+    "avl": "^1.4.4",
+    "btreejs": "^0.3.0",
     "collections": "^5.1.5",
     "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.11",

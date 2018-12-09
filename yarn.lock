@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@datastructures-js/binary-search-tree@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@datastructures-js/binary-search-tree/-/binary-search-tree-1.0.9.tgz#11dcb78764be563e9e791a501366f886b6643973"
+  integrity sha1-Edy3h2S+Vj6eeRpQE2b4hrZkOXM=
+
+"@datastructures-js/doubly-linked-list@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@datastructures-js/doubly-linked-list/-/doubly-linked-list-1.0.1.tgz#276220df0dea76aa03128dc9fcb7b36f39c48f9f"
+  integrity sha1-J2Ig3w3qdqoDEo3J/LezbznEj58=
+
 "@types/collections@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/collections/-/collections-5.0.0.tgz#a5b8498a4198f0e7c5708c1cd8d9fd1c87616d18"
@@ -131,6 +141,11 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+avl@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/avl/-/avl-1.4.4.tgz#01026fc8b28f26b25b917fb0f033a37eff3abaf0"
+  integrity sha512-vMjF4jhT2N0naO1fsBTA/lZ2AB70ECBv41na7oBe8B5PCgMVvNrWG+VRKMlbG5Mk5UGbMxzUD9fXK/IBsmmO5A==
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -190,6 +205,11 @@ braces@^2.3.0, braces@^2.3.1:
     snapdragon-node "^2.0.1"
     split-string "^3.0.2"
     to-regex "^3.0.1"
+
+btreejs@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/btreejs/-/btreejs-0.3.0.tgz#1aa3944bcbcb24d5c8485bd6700e29dbe5839b34"
+  integrity sha1-GqOUS8vLJNXISFvWcA4p2+WDmzQ=
 
 buffer-from@^1.0.0, buffer-from@^1.1.0:
   version "1.1.1"
