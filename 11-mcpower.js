@@ -24,12 +24,15 @@ function main(lines) {
     const csum = new Grid(Int32Array, gridSize, gridSize)
 
     // Precalculate summed area table
-    csum.populate((x, y) => grid.get(x, y) + csum.getMaybe(x, y-1, 0) + csum.getMaybe(x-1, y, 0) - csum.getMaybe(x-1, y-1, 0))
+    for (let x = 1; x < csum.width; x++) {
+        for (let y = 1; y < csum.height; y++) {
+            csum.set(x, y, grid.get(x, y) + csum.get(x, y-1) + csum.get(x-1, y) - csum.get(x-1, y-1))
+        }
+    }
 
     function squarePower(x, y, size) {
-        // Summed-area table calculation uses x0 < x <= x1
-        const x0 = x-1, x1 = x0+size, y0 = y-1, y1 = y0+size
-        return csum.getMaybe(x1, y1, 0) + csum.getMaybe(x0, y0, 0) - csum.getMaybe(x1, y0, 0) - csum.getMaybe(x0, y1, 0)
+        const x0 = x, x1 = x0+size, y0 = y, y1 = y0+size
+        return csum.get(x1, y1) + csum.get(x0, y0) - csum.get(x1, y0) - csum.get(x0, y1)
     }
 
     let out = [0, 0, 0, 0]
@@ -37,7 +40,7 @@ function main(lines) {
         for (const size of _.range(1, gridSize - Math.max(x, y))) {
             const pow = squarePower(x, y, size)
             if (pow > out[3]) {
-                out = [x, y, size, pow]
+                out = [x+1, y+1, size, pow]
             }
         }
     })
