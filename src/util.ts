@@ -335,3 +335,102 @@ export class Bounds {
         return Math.sqrt(this.distanceToPointSq(p))
     }
 }
+
+export class Grid<T> {
+    readonly width: number
+    readonly height: number
+
+    private arrType: (new (size: number) => Array<T>)
+    private arr: Array<T>
+
+    constructor(arrayType: (new (size: number) => Array<T>), width: number, height: number) {
+        this.width = width
+        this.height = height
+        this.arrType = arrayType
+        this.arr = new arrayType(width*height)
+    }
+
+    contains(x: number, y: number) {
+        return x >= 0 && y >= 0 && x < this.width && y < this.width
+    }
+
+    get(x: number, y: number) {
+        if (!this.contains(x, y))
+            throw new Error(`Out of bounds coordinate ${x},${y}`)
+
+        return this.arr[y + x * this.height]
+    }
+
+    getMaybe(x: number, y: number, defaultValue: T) {
+        if (!this.contains(x, y))
+            return defaultValue
+
+        return this.arr[y + x * this.height]
+    }
+
+    set(x: number, y: number, value: T) {
+        this.arr[y + x * this.height] = value
+    }
+
+    fill(value: T) {
+        this.arr.fill(value)
+    }
+
+    populate(callback: (x: number, y: number) => T) {
+        this.every((x, y) => this.set(x, y, callback(x,y)))
+    }
+
+    every(callback: (x: number, y: number) => void) {
+        for (let i = 0; i < this.width; i++) {
+            for (let j = 0; j < this.height; j++) {
+                callback(i, j)
+            }
+        }
+    }
+
+    subgrid(x: number, y: number, width: number, height: number): Grid<T> {
+        const grid = new Grid(this.arrType, width, height)
+        for (let i = x; i < x+width; i++) {
+            for (let j = y; j < y+height; j++) {
+                grid.set(i-x, j-y, this.get(i, j))
+            }
+        }
+        return grid
+    }
+
+    regionToString(x: number, y: number, width: number, height: number) {
+        return this.subgrid(x, y, width, height).toString()
+    }
+
+    toString(): string {
+        const lines: string[][] = []
+        for (let y = 0; y < this.height; y++) {
+            const line = []
+            for (let x = 0; x < this.width; x++) {
+                line.push(_.toString(this.get(x, y)))
+            }
+            lines.push(line)
+        }
+        
+        // Align the lines for printing
+        const maxLen = _.max(lines.map(l => _.max(l.map(v => v.length)))) as number
+        for (const line of lines) {
+            for (const i of _.range(line.length)) {
+                const s = line[i]
+                if (s.length < maxLen) {
+                    line[i] = s + _.repeat(" ", maxLen-s.length)
+                }
+            }
+        }
+
+        return lines.map(l => l.join(" ")).join("\n")
+    }
+
+    printRegion(x: number, y: number, width: number, height: number) {
+        log(this.regionToString(x, y, width, height))
+    }
+
+    print() {
+        log(this.toString())
+    }
+}
