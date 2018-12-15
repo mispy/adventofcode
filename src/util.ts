@@ -153,6 +153,17 @@ export class Vector2 {
     toString(): string {
         return `Vector2<${this.x}, ${this.y}>`
     }
+
+    get neighbors(): Vector2[] {
+        const surround = []
+        for (let x = this.x-1; x <= this.x+1; x++) {
+            for (let y = this.y-1; y <= this.y+1; y++) {
+                if (x !== this.x && y !== this.y)
+                    surround.push(new Vector2(x, y))
+            }
+        }
+        return surround
+    }
 }
 
 export class Bounds {
@@ -432,5 +443,25 @@ export class Grid<T> {
 
     print() {
         log(this.toString())
+    }
+}
+
+const TinyQueue = require('tinyqueue')
+export class PriorityQueue<T> {
+    queue: any
+    constructor() {
+        this.queue = new TinyQueue([], (a: any, b: any) => a.priority - b.priority)
+    }
+
+    push(value: T, priority: number) {
+        this.queue.push({ value, priority })
+    }
+
+    pop(): T {
+        return this.queue.pop().value
+    }
+
+    get length(): number {
+        return this.queue.length
     }
 }
