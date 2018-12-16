@@ -6,6 +6,8 @@ import moment = require('moment')
 export { moment }
 
 import fastLevenshtein = require('fast-levenshtein')
+import * as fs from 'fs'
+
 export function levenshtein(s1: string, s2: string) {
     return fastLevenshtein.get(s1, s2)
 }
@@ -27,6 +29,35 @@ export function runSamples(solver: (lines: string[]) => void, samples: string[])
         if (lines.length)
            solver(lines)
     }
+}
+
+export function linesTrim(input: string): string[] {
+    return input.split("\n").map(l => l.trim()).filter(l => l)
+}
+
+export class ArrayGrid extends Array {
+    width: number
+    height: number
+
+    constructor(arr: string[][]) {
+        super()
+        this.push(...arr)
+
+        const lineLens = _.uniq(arr.map(l => l.length))
+        if (lineLens.length > 1)
+            console.warn("ArrayGrid lines are not of equal length!")
+
+        this.height = this.length
+        this.width = _.max(lineLens) as number
+    }
+}
+
+export function grid(input: string): ArrayGrid {
+    return new ArrayGrid(input.split("\n").map(l => Array.from(l)))
+}
+
+export function readFile(path: string) {
+    return fs.readFileSync(path, 'utf8')
 }
 
 export function scan(s: string, r: RegExp): string[] {

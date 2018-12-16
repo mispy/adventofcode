@@ -1,11 +1,18 @@
-const { _, log, runSamples, ...aoc } = require('../dist/util')
+const { _, log, ...aoc } = require('../dist/util')
 
-/** @param {string[]} lines */
-function main(lines) {
-    log(lines)
+/** @param {string} input */
+function main(input) {
+    const lines = aoc.trimLines(input)
 }
 
-runSamples(main, [
+function runPuzzle(testCases, actual) {
+    log(aoc.readFile("input-13.txt"))
+    //testCases.map(main)
+    //main(actual)
+}
+
+
+runPuzzle([
 `
 test
 foo
@@ -16,4 +23,6 @@ foo
 `
 
 `
-])
+],
+`
+`)

@@ -1,19 +1,27 @@
-const { _, log, runSamples, ...aoc } = require('./dist/util')
+const { _, log, ...aoc } = require('./dist/util')
 
-/** @param {string[]} lines */
-function main(lines) {
-    log(lines)
+/** @param {string} input */
+function main(input) {
+    const grid = aoc.grid(input.trim())
 }
 
-runSamples(main, [
+function runPuzzle(testCases, actual) {
+    testCases.map(main)
+    main(actual)
+}
+
+const testCases = [
 `
 test
 foo
 `,
 `
-
 `,
+`    
 `
+].map(t => t.trim()).filter(t => t.length)
 
-`
-])
+const actual = `
+`.trim()
+
+runPuzzle(testCases, actual)
