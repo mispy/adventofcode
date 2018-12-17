@@ -132,7 +132,7 @@ function main(input) {
     
             for (const other of _.values(pos)) {
                 if (other.length === 1)
-                    p = p.filter(op => op !== other[0])                
+                    p = p.filter(op => op !== other[0])
             }
     
             for (const op of p) {
