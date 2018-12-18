@@ -7,6 +7,7 @@ export { moment }
 
 import fastLevenshtein = require('fast-levenshtein')
 import * as fs from 'fs'
+import { stringify } from 'querystring';
 
 export function levenshtein(s1: string, s2: string) {
     return fastLevenshtein.get(s1, s2)
@@ -496,3 +497,84 @@ export class PriorityQueue<T> {
         return this.queue.length
     }
 }
+
+/*
+
+class BoundedGrid {
+    constructor(width, height) {
+        this.arr = new Array(height).fill().map(l => new Array(width).fill(' '))
+        this.width = width
+        this.height = height
+        this.minX = 0
+        this.minY = 0
+        this.maxX = width-1
+        this.maxY = height-1
+    }
+
+    get(x, y) {
+        return this.arr[y][x]
+    }
+
+    set(x, y, value) {
+        this.arr[y][x] = value
+    }
+
+    toString() {
+        const lines = []
+        for (let y = this.minY; y <= this.maxY; y++) {
+            const line = []
+            for (let x = this.minX; x <= this.maxX; x++) {
+                line.push(this.get(x, y))
+            }
+            lines.push(line.join(""))
+        }
+        return lines.join("\n")
+    }
+
+    log() {
+        console.log(this.toString())
+    }
+}
+
+class UnboundedGrid {
+    constructor() {
+        this.map = new Map()
+        this.minX = Infinity
+        this.maxX = -Infinity
+        this.minY = Infinity
+        this.maxY = -Infinity
+    }
+
+    get(x, y) {
+        return this.map.get(`${x},${y}`)
+    }
+
+    set(x, y, value) {
+        this.map.set(`${x},${y}`, value)
+        if (x < this.minX)
+            this.minX = x
+        if (x > this.maxX)
+            this.maxX = x
+        if (y < this.minY)
+            this.minY = y
+        if (y > this.maxY)
+            this.maxY = y
+    }
+
+    toString() {
+        const lines = []
+        for (let y = this.minY; y <= this.maxY; y++) {
+            const line = []
+            for (let x = this.minX; x <= this.maxX; x++) {
+                line.push(this.get(x, y) || " ")
+            }
+            lines.push(line.join(""))
+        }
+        return lines.join("\n")
+    }
+
+    log() {
+        console.log(this.toString())
+    }
+}
+*/
