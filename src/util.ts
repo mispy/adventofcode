@@ -53,8 +53,29 @@ export class ArrayGrid extends Array {
     }
 }
 
-export function grid(input: string): ArrayGrid {
-    return new ArrayGrid(input.split("\n").map(l => Array.from(l)))
+export function grid(input: string): { grid: string[][], width: number, height: number } {
+    const grid = input.split("\n").map(l => Array.from(l))
+    return { grid, width: grid[0].length, height: grid.length }
+}
+
+export function diagonalNeighbors(cx: number, cy: number) {
+    let neighbors = []
+    for (let x = cx-1; x <= cx+1; x++) {
+        for (let y = cy-1; y <= cy+1; y++) {
+            if (x !== cx || y !== cy)
+                neighbors.push({ x, y })
+        }
+    }
+    return neighbors
+}
+
+export function straightNeighbors(cx: number, cy: number) {
+    let neighbors = []
+    neighbors.push({ x: cx, y: cy-1 })
+    neighbors.push({ x: cx-1, y: cy })
+    neighbors.push({ x: cx+1, y: cy })
+    neighbors.push({ x: cx, y: cy+1 })
+    return neighbors
 }
 
 export function readFile(path: string) {
