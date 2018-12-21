@@ -2,8 +2,51 @@ const { _, log, ...aoc } = require('./dist/util')
 
 /** @param {string} input */
 function main(input) {    
-    let rooms = []
-    
+
+    log(input)
+    input = input.replace(/\^/g, "['").replace(/\$/g,"']").replace(/\(/g,"',[['").replace(/\)/g,"']],'").replace(/\|/g,"'],['").replace(/\[/g,"[").replace(/\]/g,"]")
+    log(input)
+    return
+
+    /*function parse(input) {
+        if (!input.match(/\W/))
+            return input
+
+        if (input[0] === "(")
+            return input.slice(1, -1).split(/(?<=[(])|/).map(parse)
+
+        return input.split(/(?<=\(.+?\))|(?=\(.+?\))/).map(parse)
+    }
+
+    log(parse(input))
+    return*/
+
+    const maxLen = input.length-2
+    const regex = new RegExp(input)
+
+
+    function permutations(n) {
+        if (n === 1)
+            return ['N', 'S', 'W', 'E']
+        else {
+            let result = []
+            const next = permutations(n-1)
+            for (const ch of ['N', 'S', 'W', 'E']) {
+                for (const perm of next) {
+                    result.push(ch + perm)
+                }
+            }
+            return result
+        }
+    }
+
+    for (let i = 1; i <= maxLen; i++) {
+        for (const perm of permutations(i)) {
+            if (perm.match(regex))
+                log(perm, perm.length)
+        }        
+    }
+    return
     function parseGroup(chars) {
         const group = {}
         group.options = []
@@ -86,21 +129,20 @@ function main(input) {
         }
     }
 
-    pathfind(path, 0, 0, 0)
-    log(_.values(shortestPaths), _.values(shortestPaths).filter(len => len >= 1000).length)
+//    pathfind(path, 0, 0, 0)
+//    log(_.values(shortestPaths), _.values(shortestPaths).filter(len => len >= 1000).length)
 
-//    log(findShortest(tree))
+    log(longestPath(path).length)
 }
 
 function runPuzzle(testCases, actual) {
-    // testCases.map(main)
-    main(actual)
+    testCases.map(main)
+    // main(actual)
 }
 
 const testCases = [
 `
-^WSSEESWWWNW(S|NENNEEEENN(ESSSSW(NWSW|SSEN)|WSWWN(E|WWS(E|SS))))$`,
-`
+^ESSWWN(E|NNENN(EESS(WNSE|)SSS|WWWSSSSE(SW|NNNE)))$
 `,
 `    
 `
