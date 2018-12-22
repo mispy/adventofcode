@@ -90,6 +90,7 @@ const ops = {addr, addi, mulr, muli, banr, bani, borr, bori, setr, seti, gtir, g
 
 /** @param {string} input */
 function main(input) {
+
     let lines = aoc.linesTrim(input)
 
     const insts = lines.slice(1).map((l, i) => {

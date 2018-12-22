@@ -58,6 +58,15 @@ export function grid(input: string): { grid: string[][], width: number, height: 
     return { grid, width: grid[0].length, height: grid.length }
 }
 
+export function gridToString(grid: string[][]): string {
+    return grid.map(l => l.join("")).join("\n")
+}
+
+
+export function logGrid(grid: string[][]) {
+    log(gridToString(grid))
+}
+
 export function diagonalNeighbors(cx: number, cy: number) {
     let neighbors = []
     for (let x = cx-1; x <= cx+1; x++) {
