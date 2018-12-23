@@ -53,9 +53,15 @@ export class ArrayGrid extends Array {
     }
 }
 
-export function grid(input: string): { grid: string[][], width: number, height: number } {
-    const grid = input.split("\n").map(l => Array.from(l))
-    return { grid, width: grid[0].length, height: grid.length }
+interface Cell {
+    x: number
+    y: number
+    ch: string
+}
+
+export function parseGrid(input: string): Cell[][] {
+    const grid = input.split("\n").map((l, y) => Array.from(l).map((ch, x) => ({ x, y, ch })))
+    return grid
 }
 
 export function gridToString(grid: string[][]): string {

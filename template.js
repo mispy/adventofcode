@@ -2,12 +2,12 @@ const { _, log, ...aoc } = require('./dist/util')
 
 /** @param {string} input */
 function main(input) {
-    const grid = aoc.grid(input.trim())
+    const lines = aoc.linesTrim(input)
 }
 
 function runPuzzle(testCases, actual) {
     testCases.map(main)
-    main(actual)
+    // main(actual)
 }
 
 const testCases = [
