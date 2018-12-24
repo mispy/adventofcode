@@ -56,8 +56,8 @@ function main(input) {
         const ints = aoc.ints(l)
 //        log(l, { x: ints[0], y: ints[1], z: ints[2] }, ints[3])
         return {
-            x: ints[0], y: ints[1], z: ints[2],
-            r: ints[3]
+            x: ints[0]/500000, y: ints[1]/500000, z: ints[2]/500000,
+            r: ints[3]/500000
         }
 
     })
@@ -89,130 +89,6 @@ function main(input) {
     function getScore(p) {
         return botsInRange(p) + 1 - (getDist(p, center) / distMax)
     }
-
-
-    /*let circs = _.clone(bots)
-
-    let overlapSet = 0
-
-    for (let c of circs)
-
-    let overlaps = []
-    for (let a of circs) {
-        for (let b of circs) {
-            if (!_.isEqual(a, b)) {
-                let overlap = diamondOverlap(a, b)
-                if (overlap) {
-                    a.overlaps += 1
-                    b.overlaps += 1
-                }
-            }
-        }
-    }*/
-
-//    log(_.sortBy(circs, c => -c.overlaps)[0])
-
-    //    console.log(_.some(circs, c => _.every(circs, c2 => encloses(c2, c))))
-
-    /*log(circs)
-    while (true) {
-        circs = _.uniqWith(circs, (c1, c2) => _.isEqual(c1, c2))
-        log(circs.length)
-        let overlaps = []
-        for (let a of circs) {
-            for (let b of circs) {
-                if (!_.isEqual(a, b)) {
-                    let overlap = diamondOverlap(a, b)
-                    if (overlap)
-                        overlaps.push(overlap)
-                }
-            }
-        }
-        if (!overlaps.length)
-            break
-
-        circs = overlaps
-    }*/
-
-    /*let cubes = bots.map(b => ({
-        x1: b.x-b.r,
-        x2: b.x+b.r,
-        y1: b.y-b.r,
-        y2: b.y+b.r,
-        z1: b.z-b.r,
-        z2: b.z+b.r
-    }))
-
-    let maxSetNumber = 0
-    while (true) {
-        const hasCube = {}
-
-        log(cubes.length)
-        let overlaps = []
-        for (let a of cubes) {
-            for (let b of cubes) {
-                if (!cubeEquals(a, b)) {
-                    let overlap = cubeOverlap(a, b)
-                    if (overlap) {
-                        const key = `${overlap.x1},${overlap.x2},${overlap.y1},${overlap.y2},${overlap.z1},${overlap.z2}`
-                        if (!hasCube[key]) {
-                            hasCube[key] = true
-                            overlaps.push(overlap)
-                        }
-                        // if (overlaps.length % 10000 === 0)
-                        //     log(overlaps.length)
-
-                    }
-                }
-            }
-        }
-
-        if (!overlaps.length)
-            break
-
-        cubes = overlaps
-    }
-
-    const cube = cubes[0]*/
-
-/*    const p = { x: cube.x1, y: 0, z: 0 }
-    let best = p
-    let bestRange = botsInRange(p)
-
-    for (let i = cube.x1; i < ; i++) {
-        p.x = cube.x1+i
-        let sum = botsInRange(p)
-        if (sum > bestRange) {
-            best = _.clone(p)
-            bestRange = sum
-        }
-    }
-    log(best, bestRange)*/
-
-//    log(cubes.map(c => area(c)))
-    /*const points = []
-    for (let cube of cubes) {
-        for (let x = cube.x1; x <= cube.x2; x++) {
-            for (let y = cube.y1; y <= cube.y2; y++) {
-                for (let z = cube.z1; z <= cube.z2; z++) {
-                    let sum = 0        
-                    for (let a of bots) {
-                        if (dist(a, {x, y, z}) <= a.r)
-                            sum += 1
-                    }
-    
-                    points.push({x, y, z, sum})
-                }
-            }
-        }
-    }
-
-    let ans = _.sortBy(points, p => -p.sum)[0]
-    log(ans)*/
-
-
-    // Sample
-
 
 
     function sortBest(points) {
@@ -251,8 +127,10 @@ function main(input) {
 
     let bestScore = 0
 
+    log(width, height, depth)
+
     while (true) {
-        let start = { x: _.random(minX, maxX), y: _.random(minY, maxY), z: _.random(minZ, maxZ) } 
+        let start = center
         let dist = 100
 
 
@@ -262,9 +140,9 @@ function main(input) {
         let alternate = 0
         while (true) {     
             let changed = false
-            for (let x = start.x-dist; x <= start.x+dist; x += dist) {
-                for (let y = start.y-dist; y <= start.y+dist; y += dist) {
-                    for (let z = start.z-dist; z <= start.z+dist; z += dist) {
+            for (let x = start.x-dist; x <= start.x+dist; x += 1) {
+                for (let y = start.y-dist; y <= start.y+dist; y += 1) {
+                    for (let z = start.z-dist; z <= start.z+dist; z += 1) {
                         let p = { x, y, z }
                         const score = getScore(p)
                         if (score > candScore) {
@@ -276,175 +154,12 @@ function main(input) {
                 }
             }
 
-/*                if (!changed) {
-                    alternate += 1
-                    if (alternate === 2) {
-                        dist /= 2
-                        alternate = 0
-                    }
-                } else {
-                    alternate -= 1
-                }
-
-                if (alternate === 0)
-                    dist /= 2
-                else if (alternate === 1)
-                    dist *= 2*/
-            }
-
-
             if (candScore > bestScore) {
                 bestScore = candScore
                 log(cand, candScore, getDist(cand, center))
             }
         }
     }
-
-    /*function getCorners(bot) {
-        let pts = []
-        for (offset of [
-            [-1,0,0],
-            [1,0,0],
-            [0,1,0],
-            [0,-1,0],
-            [0,0,1],
-            [0,0,-1]]) {
-                pts.push({ x: bot.x + bot.r*offset[0], y: bot.y + bot.r*offset[1], z: bot.z + bot.r*offset[2] })
-        }
-        return pts
-    }
-
-    let corners = []
-    for (let bot of bots)
-        corners.push(...getCorners(bot))
-
-    for (let c of corners)
-        c.score = getScore(c)
-
-    let best = _.sortBy(corners, c => -c.score)[0]
-
-    let searchRadius = 10
-
-    while (true) {
-        let changed = false
-
-        for (let x = -searchRadius; x <= searchRadius; x++) {
-            for (let y = -searchRadius; y <= searchRadius; y++) {
-                for (let z = -searchRadius; z <= searchRadius; z++) {
-                    const rp = { x: best.x+x, y: best.y+y, z: best.z+z }
-                    rp.score = getScore(rp)
-
-                    if (rp.score > best.score) {
-                        best = rp
-                        changed = true
-                    }
-                }
-            }
-        }
-
-        if (!changed)
-            break
-    }
-
-    log(best, dist(best, center))*/
-
-/*    # enumerate all the corners of the octahedral bounding box of each nanobot
-    all_corners = []
-    for bot in nanobots:
-        all_corners.extend(bot.corners())
-
-    # phase 1, find the corner with maxn
-    maxn, mindist, maxpoi = 0, 1e12, None
-    for poi in all_corners:
-        n = count_bots_in_range(poi)
-        dist = origin.dist(poi)
-        if n > maxn or (n == maxn and dist < mindist):
-            maxn, mindist, maxpoi = n, dist, poi
-
-    # sr means 'search radius' for phase 2
-    # I used 10 when coming up with my answer,
-    # later found that 8 is the minimum that produces the correct result
-    sr = 10
-
-    # phase 2, search around our current max point until
-    # we can't improve it
-    while True:
-        changed = False
-        poi = maxpoi
-        for x, y, z in product(xrange(poi.x-sr,poi.x+sr+1), xrange(poi.y-sr,poi.y+sr+1), xrange(poi.z-sr, poi.z+sr+1)):
-            newpoi = Pt(x,y,z)
-            n = count_bots_in_range(newpoi)
-            dist = origin.dist(newpoi)
-
-            if n > maxn or (n == maxn and dist < mindist):
-                maxn, mindist, maxpoi = n, dist, newpoi
-                changed = True
-        if not changed: break
-
-    return mindist*/
-
-    /*let searchRange = 1000
-    let searchSampleSize = 100
-    for (let i = 0; i < 10; i++) {
-        let newSample = []
-        for (const p of sample) {
-            for (let i = 0; i < searchSampleSize; i++) {
-                const rp = { x: p.x+_.random(-searchRange, searchRange), y: p.y+_.random(-searchRange, searchRange), z: p.z+_.random(-searchRange, searchRange) }    
-                rp.val = botsInRange(rp)
-                newSample.push(rp)    
-            }
-        }
-        sample = sortBest(newSample).slice(0, 10)
-    }    */
-
-    /*let searchRadius = 1
-    let prevScore = 0
-    while (sample[0].score > prevScore) {
-        prevScore = sample[0].score
-
-        let newSample = []
-        for (const p of sample) {
-            let neighborSample = []
-            let best = p
-            for (let x = -searchRadius; x < searchRadius; x++) {
-                for (let y = -searchRadius; y < searchRadius; y++) {
-                    for (let z = -searchRadius; z < searchRadius; z++) {
-                        const rp = { x: p.x+x, y: p.y+y, z: p.z+z}
-                        rp.score = score(rp)
-                        neighborSample.push(rp)
-                    }
-                }
-            }
-            newSample.push(sortBest(neighborSample)[0])
-        }
-        log(newSample[0])
-        sample = newSample
-    }*/
-/*
-    sample = []
-    for (let x = -20; x < 20; x++) {
-        for (let y = -20; y < 20; y++) {
-            for (let z = -20; z < 20; z++) {
-                const rp = { x: p.x+x, y: p.y+y, z: p.z+z}
-            
-                let sum = 0        
-                for (let a of bots) {
-                    if (dist(a, rp) <= a.r)
-                        sum += 1
-                }
-
-                sample.push({ p: rp, num: sum })
-            }
-        }
-    }
-    let ans = _.sortBy(sample, p => -p.num)[0]
-    log(ans, dist(ans.p, { x: 0, y: 0, z: 0 }))*/
-
-    
-    // const strong = _.sortBy(bots, b => -b.r)[0]
-    // let range = bots.filter(b => dist(strong.pos, b.pos) <= strong.r)
-    // log(strong.r)
-    // log(range.length)*/
 }
 
 function runPuzzle(testCases, actual) {
